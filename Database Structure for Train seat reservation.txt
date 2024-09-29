@@ -1,0 +1,51 @@
+For the train seat reservation system, here’s a suggested database structure using MongoDB:
+
+1. Seats Collection
+This collection will store the information for each seat in the coach.
+
+json
+
+{
+   "_id": "ObjectId",
+   "seatNumber": "String",     // e.g., "1A", "2B", etc.
+   "isBooked": "Boolean",      // true if the seat is booked, false otherwise
+   "bookedBy": "String",       // Optional: Name or ID of the user who booked the seat (if required)
+   "bookingTimestamp": "Date", // Optional: Timestamp when the seat was booked
+}
+Example document:
+
+json
+
+{
+   "_id": "6132a4f8a2b9b67fbb08",
+   "seatNumber": "1A",
+   "isBooked": true,
+   "bookedBy": "user123",
+   "bookingTimestamp": "2024-09-29T10:00:00Z"
+}
+2. Booking Collection (Optional)
+If you want to track individual bookings (e.g., group bookings), you can create a bookings collection.
+
+json
+
+{
+   "_id": "ObjectId",
+   "bookingId": "String",    // Unique ID for each booking
+   "seats": ["String"],      // List of seat numbers booked (e.g., ["1A", "1B"])
+   "bookedBy": "String",     // User who made the booking (optional)
+   "bookingTimestamp": "Date" // Date and time of the booking
+}
+Example document:
+
+
+Copy code
+{
+   "_id": "6132a4f8a2b9b6b78542",
+   "bookingId": "booking001",
+   "seats": ["1A", "1B"],
+   "bookedBy": "user123",
+   "bookingTimestamp": "2024-09-29T10:05:00Z"
+}
+Key Points:
+Seats collection handles the seat availability.
+Booking collection (optional) handles group bookings and historical booking data.
